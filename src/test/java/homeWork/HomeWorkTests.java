@@ -1,20 +1,19 @@
+package homeWork;
+
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
-import static org.openqa.selenium.By.*;
+import static org.openqa.selenium.By.linkText;
 
-public class SelenideTest {
-
+public class HomeWorkTests {
     @Test
     public void testIssueSearch () {
-       Configuration.holdBrowserOpen = true;
         SelenideLogger.addListener("allure", new AllureSelenide());
         open("https://github.com/");
         $(".search-input").click();
@@ -22,8 +21,7 @@ public class SelenideTest {
         $("#query-builder-test").submit();
 
         $(linkText("eroshenkoam/allure-example")).click();
-//        $("#issues-tab").click();
         $("#issues-tab").click();
-        $(withText("#80")).should(Condition.exist);
+        $(withText("Issue_created_to_test_allure_reports")).should(Condition.exist);
     }
 }
